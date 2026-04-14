@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteData from '../data/site.json';
+---
+
+<BaseLayout
+  title="Terms of Service | VermontTaxAppeal.com"
+  description="Terms of Service for VermontTaxAppeal.com property tax grievance consulting services in Vermont."
+>
+
+  <!-- HERO -->
+  <section class="relative py-24 px-6 overflow-hidden grid-bg">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-15"
+           style="background: radial-gradient(ellipse, #f97316 0%, transparent 70%);"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">Terms of Service</h1>
+      <p class="text-slate-400 text-lg">Effective as of April 9, 2026</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto prose-dark">
+      <div class="space-y-8">
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Agreement to Terms</h2>
+          <p class="text-slate-400 leading-relaxed">
+            By accessing and using {siteData.name} and agreeing to work with us for property tax grievance services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree to these terms, do not use our website or request our services.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Service Description</h2>
+          <p class="text-slate-400 leading-relaxed">
+            {siteData.name} provides property tax grievance consulting services for residential and commercial properties throughout Vermont. Our services include:
+          </p>
+          <ul class="text-slate-400 space-y-2 ml-4 mt-3">
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Free property tax assessment and case evaluation</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Representation in property tax grievances before town listers and the Board of Civil Authority</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Preparation of evidence packages including income analysis and comparable sales</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Advocacy for reduction of assessed value</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Contingency Fee Model</h2>
+          <p class="text-slate-400 leading-relaxed mb-3">
+            Our fee structure is contingency-based. This means:
+          </p>
+          <ul class="text-slate-400 space-y-2 ml-4">
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>You pay <strong class="text-white">30% of first-year tax savings</strong> if we achieve a reduction</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>You pay <strong class="text-white">nothing</strong> if we do not reduce your assessed value</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>You pay nothing in year two or beyond, regardless of ongoing savings</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>You are not responsible for court costs, filing fees, or other legal expenses</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">No Guarantee of Results</h2>
+          <p class="text-slate-400 leading-relaxed">
+            While we exercise professional skill and judgment in evaluating and pursuing your grievance, we cannot guarantee a specific outcome or result. Property tax grievances are subject to the judgment of town listers and the Board of Civil Authority. Outcomes depend on factors beyond our control, including municipal decisions, comparable property data, and local assessment practices.
+          </p>
+          <p class="text-slate-400 leading-relaxed mt-4">
+            Our initial free assessment is an honest evaluation of case strength. However, final outcomes depend on the decision-makers involved in your grievance.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Client Responsibilities</h2>
+          <p class="text-slate-400 leading-relaxed mb-3">
+            As a client, you agree to:
+          </p>
+          <ul class="text-slate-400 space-y-2 ml-4">
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Provide accurate and complete information about your property</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Respond promptly to requests for information or documentation</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Pay the agreed contingency fee if we achieve a reduction</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Notify us of any changes to your contact information or property status</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-orange-400 shrink-0">•</span>
+              <span>Not misrepresent facts about your property or situation</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Representation & Authority</h2>
+          <p class="text-slate-400 leading-relaxed">
+            Once you sign our Agent Authorization form, you grant {siteData.name} the authority to represent you before town listers, the Board of Civil Authority, and any related grievance proceedings in Vermont. You authorize us to file documents, present evidence, and negotiate on your behalf.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Termination of Services</h2>
+          <p class="text-slate-400 leading-relaxed">
+            Either party may terminate our representation with written notice. If you terminate before a settlement is reached, you remain responsible for any fees owed for work performed and settlement already achieved. If we decline a case or recommend non-representation, no fees are owed.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Jurisdiction & Governing Law</h2>
+          <p class="text-slate-400 leading-relaxed">
+            These Terms of Service are governed by and construed in accordance with the laws of the State of Vermont, without regard to its conflict of law provisions. You agree that any legal action or proceeding arising under or related to these terms shall be subject to the exclusive jurisdiction of the courts of Vermont.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Disclaimer of Warranties</h2>
+          <p class="text-slate-400 leading-relaxed">
+            Our services are provided "as is" without any warranties, express or implied. We disclaim all warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that our services will be error-free, uninterrupted, or lead to any specific result.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Limitation of Liability</h2>
+          <p class="text-slate-400 leading-relaxed">
+            To the extent permitted by Vermont law, {siteData.name} shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or loss of profits, even if advised of the possibility of such damages.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Modifications to Terms</h2>
+          <p class="text-slate-400 leading-relaxed">
+            We reserve the right to modify these Terms of Service at any time. Changes will be effective when posted to our website. Your continued use of our services following any modification indicates your acceptance of the revised terms.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white mb-3">Contact Information</h2>
+          <p class="text-slate-400 leading-relaxed mb-4">
+            If you have questions about these Terms of Service, please contact us:
+          </p>
+          <div class="space-y-2 text-slate-400">
+            <p><strong class="text-white">{siteData.name}</strong></p>
+            <p>
+              Email: <a href={`mailto:${siteData.email}`} class="text-orange-400 hover:underline">{siteData.email}</a>
+            </p>
+            <p>
+              Phone: <a href={`tel:${siteData.phone}`} class="text-orange-400 hover:underline">{siteData.phone}</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

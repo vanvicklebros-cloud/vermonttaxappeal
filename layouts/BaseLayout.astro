@@ -1,0 +1,182 @@
+---
+import siteData from '../data/site.json';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = siteData.title,
+  description = siteData.description,
+  ogImage = '/og-default.png',
+  canonical,
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = title === siteData.title ? title : `${title} | ${siteData.name}`;
+const canonicalURL = canonical || new URL(Astro.url.pathname, siteData.url).href;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="PiZoX6L5aDqBnwcgzpzmxor3ynC0NHC6h3rn93-Lxog" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={new URL(ogImage, siteData.url).href} />
+  <meta property="og:site_name" content={siteData.name} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, siteData.url).href} />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKQ0N9YS29"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CKQ0N9YS29');
+  </script>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": siteData.name,
+    "description": siteData.description,
+    "url": siteData.url,
+    "email": siteData.email,
+    "areaServed": { "@type": "State", "name": siteData.state },
+    "priceRange": siteData.feeModel,
+    "founder": { "@type": "Person", "name": siteData.owner }
+  })} />
+</head>
+<body class="min-h-screen">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]" style="background: rgba(5,9,18,0.85); backdrop-filter: blur(20px);">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 rounded-lg btn-orange flex items-center justify-center text-white font-black text-sm">$</div>
+        <span class="font-bold text-white text-[15px] tracking-tight">Vermont<span class="text-orange-400">Tax</span>Appeal</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/how-it-works" class="px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">How It Works</a>
+        <a href="/counties" class="px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Counties</a>
+        <a href="/blog" class="px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Resources</a>
+        <a href="/about" class="px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">About</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="/contact" class="hidden md:inline-flex px-5 py-2.5 text-sm btn-orange">
+          Free Assessment
+        </a>
+        <button id="nav-toggle" class="md:hidden p-2 text-slate-400 hover:text-white">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <rect y="3" width="20" height="2" rx="1"/>
+            <rect y="9" width="20" height="2" rx="1"/>
+            <rect y="15" width="20" height="2" rx="1"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="hidden md:hidden border-t border-white/[0.06] px-6 py-4 flex flex-col gap-2" style="background: rgba(5,9,18,0.95);">
+      <a href="/how-it-works" class="py-2 text-sm text-slate-400 hover:text-white">How It Works</a>
+      <a href="/counties" class="py-2 text-sm text-slate-400 hover:text-white">Counties</a>
+      <a href="/blog" class="py-2 text-sm text-slate-400 hover:text-white">Resources</a>
+      <a href="/about" class="py-2 text-sm text-slate-400 hover:text-white">About</a>
+      <a href="/contact" class="mt-2 px-5 py-3 text-sm btn-orange text-center">Free Assessment</a>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <slot />
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/[0.06] mt-24" style="background: #030711;">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-lg btn-orange flex items-center justify-center text-white font-black text-sm">$</div>
+            <span class="font-bold text-white text-sm">VermontTaxAppeal</span>
+          </div>
+          <p class="text-slate-500 text-sm leading-relaxed">Vermont property tax grievance specialists for residential and commercial properties. Contingency-based — you only pay when we win.</p>
+        </div>
+        <div>
+          <h4 class="text-white text-sm font-semibold mb-4">Services</h4>
+          <div class="flex flex-col gap-2">
+            <a href="/how-it-works" class="text-slate-500 text-sm hover:text-orange-400 transition-colors">How It Works</a>
+            <a href="/counties" class="text-slate-500 text-sm hover:text-orange-400 transition-colors">Vermont Counties</a>
+            <a href="/contact" class="text-slate-500 text-sm hover:text-orange-400 transition-colors">Free Assessment</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white text-sm font-semibold mb-4">Resources</h4>
+          <div class="flex flex-col gap-2">
+            <a href="/blog" class="text-slate-500 text-sm hover:text-orange-400 transition-colors">Blog</a>
+            <a href="/faq" class="text-slate-500 text-sm hover:text-orange-400 transition-colors">FAQ</a>
+            <a href="/about" class="text-slate-500 text-sm hover:text-orange-400 transition-colors">About</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white text-sm font-semibold mb-4">Legal</h4>
+          <div class="flex flex-col gap-2">
+            <a href="/privacy-policy" class="text-slate-500 text-sm hover:text-orange-400 transition-colors">Privacy Policy</a>
+            <a href="/terms" class="text-slate-500 text-sm hover:text-orange-400 transition-colors">Terms of Service</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white text-sm font-semibold mb-4">Contact</h4>
+          <div class="flex flex-col gap-2">
+            <span class="text-slate-500 text-sm">Mike VanVickle</span>
+            <a href={`mailto:${siteData.email}`} class="text-slate-500 text-sm hover:text-orange-400 transition-colors">{siteData.email}</a>
+            <span class="text-slate-600 text-xs mt-2">Vermont Residential & Commercial Property Tax Specialist</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-white/[0.06] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-slate-600 text-xs">&copy; {new Date().getFullYear()} VermontTaxAppeal.com. All rights reserved.</p>
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span class="text-slate-600 text-xs">All systems operational</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('hidden');
+  });
+</script>

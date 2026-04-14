@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteData from '../data/site.json';
+---
+
+<BaseLayout
+  title="About | Vermont Property Tax Grievance Specialist | VermontTaxAppeal.com"
+  description="Mike VanVickle handles Vermont Grand List grievances before town listers and the Board of Civil Authority. Chittenden, Washington, Rutland, and all 14 VT counties. Contingency only."
+>
+
+  <!-- HERO -->
+  <section class="relative py-24 px-6 overflow-hidden" style="background: #060a0f;">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute bottom-0 right-0 w-[500px] h-[350px] opacity-8"
+           style="background: radial-gradient(ellipse, #f97316 0%, transparent 65%);"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400 text-xs font-semibold mb-8 tracking-wide">
+        Vermont Grand List · BCA · All 14 Counties · No Win, No Fee
+      </div>
+      <h1 class="text-5xl md:text-6xl font-black text-white tracking-tight leading-tight mb-5">
+        About <span style="background: linear-gradient(90deg, #f97316, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">VermontTaxAppeal</span>
+      </h1>
+      <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">
+        Vermont property tax grievance representation. Grand List challenges from the town listers through the Board of Civil Authority. Contingency — I don't earn a fee unless your assessed value comes down.
+      </p>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="py-20 px-6" style="background: #060a0f;">
+    <div class="max-w-4xl mx-auto">
+      <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 40px 44px;">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div class="md:col-span-1">
+            <div class="w-20 h-20 rounded-xl flex items-center justify-center text-3xl font-black text-white mb-4"
+                 style="background: linear-gradient(135deg, #f97316, #ea580c);">MV</div>
+            <div class="text-white font-bold text-xl mb-1">{siteData.owner}</div>
+            <div class="text-orange-400 text-sm font-semibold mb-5">Founder · VermontTaxAppeal.com</div>
+            <div class="space-y-2">
+              {[
+                'Vermont Grand List Grievance Specialist',
+                '32 V.S.A. § 4404 · All 14 Counties',
+                'Residential, Commercial & Agricultural',
+                'Listers · BCA · Director PVR',
+              ].map((item: string) => (
+                <div class="flex items-center gap-2 text-slate-400 text-sm">
+                  <svg class="w-4 h-4 text-orange-400 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8l4 4 6-6"/>
+                  </svg>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <p class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-4">How I Got Here</p>
+            <p class="text-slate-300 leading-relaxed mb-4">
+              Vermont has some of the most idiosyncratic property tax assessment rules in New England. The Grand List system, the Board of Civil Authority process, the role of the Director of Property Valuation and Review — it's not intuitive, and most property owners who overpay don't realize they're doing it.
+            </p>
+            <p class="text-slate-400 leading-relaxed mb-4">
+              I started working on Vermont grievances because the gap between what properties are actually worth and what town listers put on the Grand List is real and measurable. In Burlington's South End, in commercial strips along Route 2 in Montpelier, in lodging properties around Stowe and Killington — the income approach regularly produces values meaningfully lower than what the cost-based CAMA model generates. That gap is what we work with.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+              The Vermont process is more forgiving than people expect. Town listers are often willing to correct a legitimate overvaluation when you show them comparable sales they didn't have or an income analysis that tells the real story. Most of my Vermont cases resolve before the BCA. The ones that don't, we take to the BCA with a site inspection and a full evidence record. And we don't stop there if the numbers still justify pushing further.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS + APPROACH -->
+  <section class="py-16 px-6" style="background: #04080f;">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:28px;">
+          <p class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-4">What I Handle</p>
+          <div class="space-y-4">
+            {[
+              { title: 'Vermont Grand List Grievances (§ 4404)', body: 'Written grievances filed with town listers within 30 days of the Grand List. Lister hearings, BCA appeals, and Director of PVR escalations under 32 V.S.A. § 4467.' },
+              { title: 'All 14 Vermont Counties', body: 'Chittenden (Burlington, South Burlington, Williston), Washington (Montpelier, Barre, Waterbury), Rutland (Rutland City, Castleton), Windsor, Windham, and the full Northeast Kingdom including Caledonia, Orange, and Essex counties.' },
+              { title: 'Residential, Commercial & Agricultural', body: 'Single-family, multifamily rental, office, retail, industrial, ski and resort properties, and current-use agricultural land. Vermont\'s § 4404 grievance right covers all property classes on the Grand List.' },
+            ].map((item: {title:string,body:string}) => (
+              <div>
+                <div class="text-white font-bold text-sm mb-1">{item.title}</div>
+                <div class="text-slate-500 text-sm leading-relaxed">{item.body}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:28px;">
+          <p class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-4">How I Work</p>
+          <div class="space-y-4">
+            {[
+              { title: 'Cases Only I Think Can Win', body: 'Every property gets a free review before I accept it. I look at the comparable sales, the town\'s CLA ratio, and the income picture. If the data doesn\'t support a reduction, I say so.' },
+              { title: 'Contingency — Period', body: '30% of first-year savings, after the reduction is confirmed. No retainer, no hourly rate, no invoice if I don\'t deliver. Vermont clients have been burned by consultants who charge regardless of outcome — that\'s not how I work.' },
+              { title: 'Annual Representation', body: 'Vermont assessments change every year. The Grand List is refiled annually. I track my clients\' properties cycle to cycle and reach out when the data looks worth challenging again.' },
+            ].map((item: {title:string,body:string}) => (
+              <div>
+                <div class="text-white font-bold text-sm mb-1">{item.title}</div>
+                <div class="text-slate-500 text-sm leading-relaxed">{item.body}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="py-12 px-6" style="background: #060a0f;">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-3 gap-4">
+        {[
+          { metric: '14', label: 'VT Counties' },
+          { metric: '30 Days', label: 'Grievance window' },
+          { metric: '$0', label: 'Unless we reduce your value' },
+        ].map((item: {metric:string,label:string}) => (
+          <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); border-radius:14px;" class="p-6 text-center">
+            <div class="text-3xl md:text-4xl font-black text-orange-400 mb-1">{item.metric}</div>
+            <div class="text-slate-500 text-xs font-medium uppercase tracking-wide">{item.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-6" style="background: #04080f;">
+    <div class="max-w-3xl mx-auto text-center">
+      <div style="background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(234,88,12,0.04) 100%); border: 1px solid rgba(249,115,22,0.18); border-radius: 20px;" class="p-12">
+        <h2 class="text-3xl font-black text-white mb-4">Tell Me About Your Vermont Property</h2>
+        <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+          Share the address and I'll pull the Grand List entry and comparable sales. I'll give you a plain read on whether there's a case — and what I think the reduction could look like.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-flex items-center gap-2 px-8 py-4 text-base btn-orange justify-center font-semibold">
+            Get Free Grievance Review
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </a>
+          <a href={`mailto:${siteData.email}`} class="inline-flex items-center gap-2 px-8 py-4 text-base btn-ghost justify-center">
+            Email Directly
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

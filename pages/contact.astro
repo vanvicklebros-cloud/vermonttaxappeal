@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteData from '../data/site.json';
+---
+
+<BaseLayout
+  title="Free Assessment | VermontTaxAppeal.com"
+  description="Free Vermont property tax assessment for residential and commercial properties. 48-hour response with honest case evaluation and savings estimate."
+>
+
+  <!-- HERO -->
+  <section class="relative py-20 px-6 overflow-hidden grid-bg">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-15"
+           style="background: radial-gradient(ellipse, #f97316 0%, transparent 70%);"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400 text-xs font-semibold mb-8 tracking-wide uppercase">
+        <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+        Response within 48 hours
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        Request Your <span class="gradient-text text-glow">Free Assessment</span>
+      </h1>
+      <p class="text-slate-400 text-lg leading-relaxed">
+        Fill out the form below. We pull your assessment data, run the numbers, and tell you exactly what we think you can save — no strings attached.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORM SECTION HEADING -->
+  <h2 class="sr-only">Property Assessment Form</h2>
+
+  <!-- FORM + SIDEBAR -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+      <!-- FORM -->
+      <div class="lg:col-span-2">
+        <form
+          name="property-assessment"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="glass rounded-2xl p-8 space-y-5"
+        >
+          <input type="hidden" name="form-name" value="property-assessment" />
+          <p class="hidden">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-white text-sm font-semibold mb-2">Full Name *</label>
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Jane Smith"
+                class="w-full px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 outline-none transition-all"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);"
+                onfocus="this.style.borderColor='rgba(249,115,22,0.4)'"
+                onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+              />
+            </div>
+            <div>
+              <label class="block text-white text-sm font-semibold mb-2">Email Address *</label>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="jane@company.com"
+                class="w-full px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 outline-none transition-all"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);"
+                onfocus="this.style.borderColor='rgba(249,115,22,0.4)'"
+                onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-white text-sm font-semibold mb-2">Phone Number</label>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="(414) 555-0100"
+                class="w-full px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 outline-none transition-all"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);"
+                onfocus="this.style.borderColor='rgba(249,115,22,0.4)'"
+                onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+              />
+            </div>
+            <div>
+              <label class="block text-white text-sm font-semibold mb-2">Property Type *</label>
+              <select
+                name="property-type"
+                required
+                class="w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-all appearance-none"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);"
+                onfocus="this.style.borderColor='rgba(249,115,22,0.4)'"
+                onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+              >
+                <option value="" disabled selected class="bg-slate-900">Select type...</option>
+                <option value="office" class="bg-slate-900">Office</option>
+                <option value="retail" class="bg-slate-900">Retail / Strip Center</option>
+                <option value="industrial" class="bg-slate-900">Industrial / Warehouse</option>
+                <option value="multifamily" class="bg-slate-900">Multifamily (5+ units)</option>
+                <option value="hospitality" class="bg-slate-900">Hotel / Hospitality</option>
+                <option value="mixed-use" class="bg-slate-900">Mixed Use</option>
+                <option value="special" class="bg-slate-900">Special Use / Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-white text-sm font-semibold mb-2">Property Address *</label>
+            <input
+              type="text"
+              name="address"
+              required
+              placeholder="123 Main St, Burlington, VT 05401"
+              class="w-full px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 outline-none transition-all"
+              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);"
+              onfocus="this.style.borderColor='rgba(249,115,22,0.4)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-white text-sm font-semibold mb-2">County</label>
+              <input
+                type="text"
+                name="county"
+                placeholder="e.g. Chittenden, Washington, Rutland"
+                class="w-full px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 outline-none transition-all"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);"
+                onfocus="this.style.borderColor='rgba(249,115,22,0.4)'"
+                onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+              />
+            </div>
+            <div>
+              <label class="block text-white text-sm font-semibold mb-2">Parcel / Taxpayer ID (optional)</label>
+              <input
+                type="text"
+                name="parcel-id"
+                placeholder="Speeds up research"
+                class="w-full px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 outline-none transition-all"
+                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);"
+                onfocus="this.style.borderColor='rgba(249,115,22,0.4)'"
+                onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-white text-sm font-semibold mb-2">Anything else we should know?</label>
+            <textarea
+              name="message"
+              rows="4"
+              placeholder="Vacancy issues, recent renovations, comparable properties you know of, etc."
+              class="w-full px-4 py-3 rounded-xl text-white text-sm placeholder-slate-600 outline-none transition-all resize-none"
+              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);"
+              onfocus="this.style.borderColor='rgba(249,115,22,0.4)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="w-full px-8 py-4 text-base btn-orange inline-flex items-center justify-center gap-2">
+            Submit — Get My Free Assessment
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </button>
+
+          <p class="text-slate-600 text-xs text-center">
+            No spam. No sales calls. We'll respond within 48 hours with an honest assessment.
+          </p>
+        </form>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="space-y-5">
+
+        <div class="glass rounded-2xl p-6">
+          <h2 class="text-orange-400 text-xs font-semibold uppercase tracking-widest mb-4">What Happens Next</h2>
+          <div class="space-y-4">
+            {[
+              { step: '1', title: 'We research your property', body: 'Pull assessment data, run income analysis and comparable sales.' },
+              { step: '2', title: 'You get our honest take', body: 'Within 48 hours — case strength, savings estimate, recommendation.' },
+              { step: '3', title: 'You decide', body: 'If you want to move forward, we send two simple forms to sign.' },
+            ].map(item => (
+              <div class="flex gap-3 items-start">
+                <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                     style="background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3);">
+                  <span class="text-orange-400 text-xs font-bold">{item.step}</span>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm mb-0.5">{item.title}</div>
+                  <div class="text-slate-500 text-xs leading-relaxed">{item.body}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-6">
+          <h2 class="text-orange-400 text-xs font-semibold uppercase tracking-widest mb-4">Contact Directly</h2>
+          <div class="space-y-3">
+            <a href={`mailto:${siteData.email}`}
+               class="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm">
+              <svg class="w-4 h-4 text-orange-400 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="3" width="14" height="10" rx="1"/>
+                <path d="M1 4l7 5 7-5"/>
+              </svg>
+              {siteData.email}
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-xl p-5" style="background: rgba(249,115,22,0.05); border: 1px solid rgba(249,115,22,0.15);">
+          <div class="text-orange-400 font-semibold text-sm mb-2">
+            <span role="img" aria-label="warning">⚠️</span> Don't Miss Your Deadline
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Vermont grievance deadlines are typically <strong class="text-white">30 days after Grand List filing (late April or early May)</strong>. Contact us early so we have time to build a strong case before your deadline.
+          </p>
+        </div>
+
+        <div class="glass rounded-xl p-5">
+          <h2 class="text-white font-semibold text-sm mb-3">We Work With</h2>
+          <div class="space-y-1">
+            {['Single Family Homes', 'Multifamily (5+ units)', 'Office Buildings', 'Retail & Strip Centers', 'Industrial & Warehouse', 'Hotels & Hospitality'].map(t => (
+              <div class="flex items-center gap-2 text-slate-400 text-xs">
+                <span class="w-1 h-1 rounded-full bg-orange-400 shrink-0"></span>
+                {t}
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
