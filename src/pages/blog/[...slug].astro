@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// Related posts for internal linking
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const relatedPosts = allPosts
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric'
+});
+---
+
+<BaseLayout
+  title={`${post.data.title} | VermontTaxAppeal.com`}
+  description={post.data.description}
+  ogType="article"
+>
+
+  <!-- HERO -->
+  <section class="relative py-20 px-6 overflow-hidden grid-bg">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-15"
+           style="background: radial-gradient(ellipse, #f97316 0%, transparent 70%);"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto">
+      <a href="/blog" class="inline-flex items-center gap-2 text-slate-500 hover:text-orange-400 text-sm mb-8 transition-colors">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 8H3M7 4l-4 4 4 4"/>
+        </svg>
+        All Resources
+      </a>
+
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-6">
+          {post.data.tags.slice(0, 4).map((tag: string) => (
+            <span class="px-3 py-1 rounded-full text-orange-400 text-xs font-semibold"
+                  style="background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2);">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+        {post.data.title}
+      </h1>
+
+      <p class="text-lg text-slate-300 leading-relaxed mb-6 max-w-2xl">
+        {post.data.description}
+      </p>
+
+      <div class="flex items-center gap-4 text-sm text-slate-500">
+        <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+        <span>·</span>
+        <span>By <span class="text-slate-300">{post.data.author}</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <article class="py-16 px-6">
+    <div class="max-w-3xl mx-auto prose-dark">
+      <Content />
+    </div>
+  </article>
+
+  <!-- BOTTOM CTA -->
+  <section class="py-16 px-6">
+    <div class="max-w-3xl mx-auto rounded-2xl p-10 text-center"
+         style="background: linear-gradient(135deg, rgba(249,115,22,0.08), rgba(234,88,12,0.04)); border: 1px solid rgba(249,115,22,0.2);">
+      <h2 class="text-2xl font-black text-white mb-3">Ready to challenge your Vermont assessment?</h2>
+      <p class="text-slate-400 mb-6 max-w-lg mx-auto">Free analysis in 48 hours. We only get paid if we save you money.</p>
+      <a href="/contact" class="inline-flex items-center gap-2 px-8 py-4 text-sm btn-orange">
+        Request Free Assessment
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </section>
+
+  {relatedPosts.length > 0 && (
+    <section class="py-16 px-6" style="background: #04080f;">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl font-black text-white mb-8 text-center">More Vermont Property Tax Resources</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {relatedPosts.map(rp => (
+            <a href={`/blog/${rp.id}/`} class="block rounded-xl p-6 transition-all hover:border-orange-500/40"
+               style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+              <h3 class="text-white font-bold text-sm mb-2 leading-snug">{rp.data.title}</h3>
+              <p class="text-slate-500 text-xs leading-relaxed line-clamp-2">{rp.data.description}</p>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-8">
+          <a href="/counties" class="text-orange-400 text-sm font-semibold hover:text-orange-300 transition-colors">
+            Find your Vermont county's grievance details &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.data.title,
+    "description": post.data.description,
+    "datePublished": post.data.pubDate.toISOString(),
+    ...(post.data.updatedDate ? { "dateModified": post.data.updatedDate.toISOString() } : {}),
+    "author": {
+      "@type": "Person",
+      "name": post.data.author,
+      "url": "https://vermonttaxappeal.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VermontTaxAppeal.com",
+      "url": "https://vermonttaxappeal.com"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vermonttaxappeal.com" },
+      { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://vermonttaxappeal.com/blog" },
+      { "@type": "ListItem", "position": 3, "name": post.data.title, "item": `https://vermonttaxappeal.com/blog/${post.id}` }
+    ]
+  })} />
+</BaseLayout>

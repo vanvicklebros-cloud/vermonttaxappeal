@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | VermontTaxAppeal.com"
+  description="The page you're looking for doesn't exist. Find Vermont property tax grievance resources, county guides, and our free assessment form."
+  noindex={true}
+>
+  <section class="py-32 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <p class="text-orange-400 font-black text-7xl mb-4" style="letter-spacing: -0.05em;">404</p>
+      <h1 class="text-3xl font-black text-white mb-4">This page doesn't exist</h1>
+      <p class="text-slate-400 mb-10 leading-relaxed">
+        The page you were looking for has moved or never existed. Try one of these helpful links:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto mb-10">
+        <a href="/" class="px-6 py-4 rounded-xl text-sm font-semibold text-center transition-all hover:border-orange-500/40"
+           style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #e2e8f0;">Home</a>
+        <a href="/counties" class="px-6 py-4 rounded-xl text-sm font-semibold text-center transition-all hover:border-orange-500/40"
+           style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #e2e8f0;">VT Counties</a>
+        <a href="/blog" class="px-6 py-4 rounded-xl text-sm font-semibold text-center transition-all hover:border-orange-500/40"
+           style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #e2e8f0;">Resources</a>
+        <a href="/contact" class="px-6 py-4 rounded-xl text-sm font-semibold text-center transition-all hover:border-orange-500/40"
+           style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #e2e8f0;">Free Assessment</a>
+      </div>
+
+      <a href="/" class="inline-flex items-center gap-2 px-8 py-4 text-sm btn-orange">
+        Return to Homepage
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

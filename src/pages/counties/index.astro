@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const counties = (await getCollection('counties'))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<BaseLayout
+  title="Vermont Counties | VermontTaxAppeal.com"
+  description="We handle property tax grievances for residential and commercial properties in all 14 Vermont counties. Find your county for lister contact info, grievance deadlines, and average savings."
+>
+
+  <!-- HERO -->
+  <section class="relative py-24 px-6 overflow-hidden grid-bg">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-15"
+           style="background: radial-gradient(ellipse, #f97316 0%, transparent 70%);"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400 text-xs font-semibold mb-8 tracking-wide uppercase">
+        <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+        All 14 Vermont Counties
+      </div>
+      <h1 class="text-5xl md:text-6xl font-black text-white tracking-tight mb-4">
+        Find Your <span class="gradient-text text-glow">County</span>
+      </h1>
+      <p class="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
+        We handle property tax grievances for residential and commercial properties in every Vermont county. Click your county for lister details, deadlines, and local grievance data.
+      </p>
+    </div>
+  </section>
+
+  <!-- COUNTIES GRID -->
+  <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      {counties.length === 0 ? (
+        <div class="text-center py-20">
+          <div class="text-4xl mb-4">🗺️</div>
+          <div class="text-white font-bold text-xl mb-2">County pages coming soon</div>
+          <p class="text-slate-500 text-sm max-w-md mx-auto">
+            We're building individual pages for all 14 Vermont counties. In the meantime, we handle grievances in every county — just submit your property for a free assessment.
+          </p>
+          <a href="/contact" class="inline-flex items-center gap-2 px-8 py-4 text-sm btn-orange mt-8">
+            Get Free Assessment
+          </a>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {counties.map(county => (
+            <a href={`/counties/${county.id}`} class="glass glass-hover rounded-xl p-5 block group">
+              <div class="text-white font-bold text-sm mb-1 group-hover:text-orange-400 transition-colors">
+                {county.data.title}
+              </div>
+              {county.data.cadName && (
+                <div class="text-slate-500 text-xs mb-2">{county.data.cadName}</div>
+              )}
+              {county.data.avgSavings && (
+                <div class="text-orange-400 text-xs font-semibold">
+                  Avg. savings: {county.data.avgSavings}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- ALL 72 NOTE -->
+  <section class="py-12 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="glass rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
+        <div class="text-4xl">🗺️</div>
+        <div class="flex-1">
+          <div class="text-white font-bold text-lg mb-1">Don't see your county?</div>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            We handle property tax grievances for residential and commercial properties in all 14 Vermont counties — from Chittenden and Washington to small rural counties in the Northeast Kingdom. If your county isn't listed above, submit your property and we'll handle it.
+          </p>
+        </div>
+        <a href="/contact" class="shrink-0 inline-flex items-center gap-2 px-6 py-3 text-sm btn-orange">
+          Get Free Assessment
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

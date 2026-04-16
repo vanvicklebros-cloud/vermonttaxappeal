@@ -1,0 +1,33 @@
+{
+  "name": "VermontTaxAppeal.com",
+  "title": "Vermont Property Tax Appeal",
+  "tagline": "We Lower Your Vermont Property Taxes — Or You Don't Pay",
+  "description": "Vermont property tax appeal firm. We handle your grievance through the Board of Civil Authority and beyond on a contingency basis. No reduction, no fee.",
+  "url": "https://vermonttaxappeal.com",
+  "state": "Vermont",
+  "stateAbbr": "VT",
+  "serviceType": "Residential & Commercial",
+  "feeModel": "30% contingency on tax savings achieved",
+  "phone": "",
+  "email": "info@vermonttaxappeal.com",
+  "owner": "Mike VanVickle",
+  "colors": {
+    "primary": "#f97316",
+    "primaryDark": "#ea580c",
+    "accent": "#1e3a5f",
+    "dark": "#0f172a",
+    "light": "#f8fafc"
+  },
+  "cta": "Get Your Free Tax Assessment",
+  "trustSignals": [
+    "No Reduction, No Fee",
+    "30% Contingency — You Keep 70% of Savings",
+    "Vermont Property Tax Appeal Specialist",
+    "We Handle Everything: Grievance → BCA → Savings"
+  ],
+  "targetCounties": [
+    "Chittenden", "Washington", "Rutland", "Windham", "Windsor",
+    "Bennington", "Franklin", "Addison", "Lamoille", "Caledonia",
+    "Orange", "Orleans", "Grand Isle", "Essex"
+  ]
+}

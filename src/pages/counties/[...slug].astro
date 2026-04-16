@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import siteData from '../../data/site.json';
+
+export async function getStaticPaths() {
+  const counties = await getCollection('counties');
+  return counties.map(county => ({
+    params: { slug: county.id },
+    props: { county },
+  }));
+}
+
+const { county } = Astro.props;
+const { Content } = await render(county);
+
+// Get all counties for cross-linking
+const allCounties = await getCollection('counties');
+const otherCounties = allCounties.filter(c => c.id !== county.id).sort((a, b) => a.data.county.localeCompare(b.data.county));
+---
+
+<BaseLayout
+  title={`${county.data.title} Property Tax Grievance | VermontTaxAppeal.com`}
+  description={county.data.description}
+  ogType="article"
+>
+
+  <!-- HERO -->
+  <section class="relative py-24 px-6 overflow-hidden grid-bg">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-15"
+           style="background: radial-gradient(ellipse, #f97316 0%, transparent 70%);"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto">
+      <a href="/counties" class="inline-flex items-center gap-2 text-slate-500 hover:text-orange-400 text-sm mb-10 transition-colors">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 8H3M7 4l-4 4 4 4"/>
+        </svg>
+        All Counties
+      </a>
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400 text-xs font-semibold mb-6 tracking-wide uppercase">
+        Vermont County · Property Tax Grievance
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        <span class="gradient-text">{county.data.title}</span> Property Tax Grievance
+      </h1>
+      <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">{county.data.description}</p>
+    </div>
+  </section>
+
+  <!-- COUNTY DETAILS + CONTENT -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+      <!-- MAIN CONTENT -->
+      <div class="lg:col-span-2 prose-dark">
+        <Content />
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="space-y-5">
+
+        <div class="glass rounded-2xl p-6">
+          <p class="text-orange-400 text-xs font-semibold uppercase tracking-widest mb-4">County Details</p>
+          <div class="space-y-3">
+            {county.data.cadName && (
+              <div>
+                <div class="text-slate-500 text-xs uppercase tracking-wide mb-1">Town Listers</div>
+                <div class="text-white text-sm font-semibold">{county.data.cadName}</div>
+              </div>
+            )}
+            {county.data.filingDeadline && (
+              <div>
+                <div class="text-slate-500 text-xs uppercase tracking-wide mb-1">Grievance Deadline</div>
+                <div class="text-white text-sm font-semibold">{county.data.filingDeadline}</div>
+              </div>
+            )}
+            {county.data.avgSavings && (
+              <div>
+                <div class="text-slate-500 text-xs uppercase tracking-wide mb-1">Avg. Annual Savings</div>
+                <div class="text-orange-400 text-lg font-black">{county.data.avgSavings}</div>
+              </div>
+            )}
+            {county.data.cadWebsite && (
+              <div>
+                <div class="text-slate-500 text-xs uppercase tracking-wide mb-1">Lister Website</div>
+                <a href={county.data.cadWebsite} target="_blank" rel="noopener noreferrer"
+                   class="text-orange-400 text-sm hover:underline break-all">
+                  {county.data.cadWebsite.replace('https://', '').replace('http://', '')}
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div class="rounded-2xl p-6 glow-orange"
+             style="background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(234,88,12,0.04) 100%); border: 1px solid rgba(249,115,22,0.2);">
+          <div class="text-white font-bold text-base mb-2">Grieve Your {county.data.county ?? county.data.title} Property</div>
+          <p class="text-slate-400 text-sm mb-5 leading-relaxed">
+            Free assessment in 48 hours. We only get paid if we save you money.
+          </p>
+          <a href="/contact" class="inline-flex items-center gap-2 w-full justify-center px-6 py-3 text-sm btn-orange">
+            Get Free Assessment
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER VERMONT COUNTIES -->
+  <section class="py-20 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-black text-white mb-12 text-center">Explore Other Vermont Counties</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {otherCounties.map(c => (
+          <a href={`/counties/${c.id}`} class="glass glass-hover rounded-xl p-4 text-center hover:bg-orange-500/10 transition-all">
+            <div class="text-white text-sm font-semibold">{c.data.county}</div>
+            <div class="text-slate-500 text-xs mt-1">County</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEMA MARKUP -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": siteData.url
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Vermont Counties",
+        "item": `${siteData.url}/counties`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": county.data.title,
+        "item": `${siteData.url}/counties/${county.id}`
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `Property Tax Grievance - ${county.data.county} County`,
+    "description": county.data.description,
+    "serviceType": "Residential & Commercial Property Tax Grievance",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": siteData.name,
+      ...(siteData.phone ? { "telephone": siteData.phone } : {}),
+      "email": siteData.email,
+      "url": siteData.url,
+      "areaServed": {
+        "@type": "City",
+        "name": county.data.county,
+        "addressRegion": "VT",
+        "addressCountry": "US"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": county.data.county,
+      "addressRegion": "VT"
+    },
+    "priceRange": siteData.feeModel
+  })} />
+
+</BaseLayout>

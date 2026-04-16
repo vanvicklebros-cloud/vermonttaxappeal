@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Vermont Property Tax Grievance Process | Grand List → BCA | VermontTaxAppeal.com"
+  description="How Vermont property tax grievances work under 32 V.S.A. § 4404. Filing with town listers, Board of Civil Authority hearings, and Director of Property Valuation and Review appeals. Plain explanation, no jargon."
+>
+
+  <!-- HERO — plainspoken, Grand List-first -->
+  <section class="relative py-28 px-6 overflow-hidden" style="background: #060a0f;">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute bottom-0 left-0 w-[500px] h-[350px] opacity-8"
+           style="background: radial-gradient(ellipse, #f97316 0%, transparent 70%);"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400 text-xs font-semibold mb-8 tracking-wide">
+        32 V.S.A. § 4404 · Grand List Grievance · BCA · State Appraiser
+      </div>
+      <h1 class="text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.08] mb-6">
+        How Vermont<br />
+        <span style="background: linear-gradient(90deg, #f97316, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Property Tax Grievances</span><br />
+        Actually Work
+      </h1>
+      <p class="text-slate-400 text-lg md:text-xl max-w-2xl leading-relaxed">
+        The Vermont grievance process is more approachable than most people expect. Here's what it involves, who makes the decisions, and how we handle it for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- GRAND LIST EXPLAINER CALLOUT -->
+  <div style="background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07);" class="py-6 px-6">
+    <div class="max-w-4xl mx-auto flex items-start gap-5">
+      <div class="text-3xl shrink-0">📋</div>
+      <div>
+        <div class="text-white font-bold mb-1">What Is the Grand List?</div>
+        <div class="text-slate-400 text-sm leading-relaxed">The Grand List is Vermont's official municipal record of all taxable property and their assessed values, filed annually by the town listers under 32 V.S.A. § 4152. Once filed — typically by April 1 — you have 30 days to file a written grievance if you believe your property is assessed above fair market value. This 30-day window under § 4404 is the primary entry point for a tax reduction.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS — VT voice throughout, statute at each stage -->
+  <section class="py-20 px-6" style="background: #060a0f;">
+    <div class="max-w-4xl mx-auto space-y-6">
+
+      <!-- Step 01 -->
+      <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 32px 36px;">
+        <div class="flex gap-6 items-start">
+          <div class="shrink-0 text-center">
+            <div class="text-6xl font-black text-orange-500/20 leading-none mb-2">01</div>
+            <div class="text-orange-400 font-bold text-xs border border-orange-500/30 rounded px-2 py-0.5">32 V.S.A. § 4404</div>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-white text-xl font-black mb-3">We Review Your Grand List Assessment</h2>
+            <p class="text-slate-400 leading-relaxed mb-4">
+              Share your property address and we pull your current Grand List entry, your town's common level of appraisal, and comparable sales from the Vermont Land Records database. We look at how your property compares to similar parcels in Chittenden, Washington, Rutland, or whichever county you're in. Within a couple of days, we'll tell you plainly: is there a case here worth pursuing, and what does a realistic reduction look like?
+            </p>
+            <p class="text-slate-500 text-sm">No charge. No commitment. If the numbers don't support a grievance, we'll say that.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center"><div class="w-px h-6 bg-gradient-to-b from-orange-500/30 to-transparent"></div></div>
+
+      <!-- Step 02 -->
+      <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 32px 36px;">
+        <div class="flex gap-6 items-start">
+          <div class="shrink-0">
+            <div class="text-6xl font-black text-orange-500/20 leading-none">02</div>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-white text-xl font-black mb-3">You Authorize Us — One Form, Nothing Else</h2>
+            <p class="text-slate-400 leading-relaxed mb-5">
+              You sign an authorization form that lets us represent you before the town listers and Board of Civil Authority. We also prepare a contingency agreement — 30% of the first-year savings we achieve. That's the entire paperwork requirement on your end. You don't attend meetings, you don't talk to the listers, and you don't need to understand assessment methodology. We do all of it.
+            </p>
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 18px;">
+              <div class="text-white font-semibold text-sm mb-3">Things you'll never need to deal with:</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  'Attend the lister hearing',
+                  'Research comparable sales',
+                  'Track your town\'s Grand List filing date',
+                  'Build an income or cost analysis',
+                  'Communicate with the BCA',
+                  'File BCA appeal paperwork',
+                ].map((item: string) => (
+                  <div class="flex items-center gap-2 text-slate-400 text-sm">
+                    <svg class="w-4 h-4 text-orange-400 shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l4 4 6-6"/></svg>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center"><div class="w-px h-6 bg-gradient-to-b from-orange-500/30 to-transparent"></div></div>
+
+      <!-- Step 03 -->
+      <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 32px 36px;">
+        <div class="flex gap-6 items-start">
+          <div class="shrink-0 text-center">
+            <div class="text-6xl font-black text-orange-500/20 leading-none mb-2">03</div>
+            <div class="text-orange-400 font-bold text-xs border border-orange-500/30 rounded px-2 py-0.5">§ 4461 BCA</div>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-white text-xl font-black mb-3">We File the Grievance & Work the Lister Stage</h2>
+            <p class="text-slate-400 leading-relaxed mb-5">
+              We file a written grievance with the town listers within the 30-day window under § 4404 and attend the lister hearing with a full evidence package. For many properties — especially income-producing commercial real estate in Burlington, Barre, St. Albans, or Brattleboro — the lister stage is where the case settles. Listers have the authority to adjust the Grand List value, and they often do when presented with credible market evidence.
+            </p>
+            <div class="space-y-3">
+              {[
+                { stage: 'Written Grievance Under § 4404', detail: 'Filed with the town listers within 30 days of Grand List being lodged. Includes initial grounds and evidence.' },
+                { stage: 'Comparable Sales Analysis', detail: 'Vermont Land Records and NEMLS data. Arm\'s-length sales of similar properties within 12–24 months.' },
+                { stage: 'Income Approach for Commercial Properties', detail: 'Actual rent roll, vacancy history, operating expenses, and capitalized into a market-based value.' },
+                { stage: 'Board of Civil Authority Appeal (§ 4461)', detail: 'If the lister decision is unsatisfactory, we appeal to the BCA — which includes a formal site inspection and full hearing.' },
+              ].map((item: {stage:string,detail:string}, i: number) => (
+                <div class="flex gap-4 items-start">
+                  <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                       style="background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.25);">
+                    <span class="text-orange-400 text-xs font-bold">{i + 1}</span>
+                  </div>
+                  <div>
+                    <div class="text-white font-semibold text-sm mb-0.5">{item.stage}</div>
+                    <div class="text-slate-500 text-sm">{item.detail}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center"><div class="w-px h-6 bg-gradient-to-b from-orange-500/30 to-transparent"></div></div>
+
+      <!-- Step 04 -->
+      <div style="background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.2); border-radius: 16px; padding: 32px 36px;">
+        <div class="flex gap-6 items-start">
+          <div class="shrink-0 text-center">
+            <div class="text-6xl font-black text-orange-500/30 leading-none mb-2">04</div>
+            <div class="text-orange-400 font-bold text-xs border border-orange-500/30 rounded px-2 py-0.5">§ 4467 PVR</div>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-white text-xl font-black mb-3">Reduction Confirmed — Your Tax Bill Drops</h2>
+            <p class="text-slate-400 leading-relaxed mb-5">
+              When a reduction is confirmed — whether at the lister, BCA, or Director of Property Valuation and Review stage — your Grand List entry is updated and your tax bill reflects the lower value. Our invoice is 30% of the first-year savings. Nothing in year two or beyond. And if we never get a reduction, there's no invoice at all.
+            </p>
+            <div class="grid grid-cols-3 gap-3">
+              {[
+                { metric: '40%', label: 'VT tax increase in 5 years' },
+                { metric: '14', label: 'Counties we cover' },
+                { metric: '$0', label: 'If we don\'t save you money' },
+              ].map((item: {metric:string,label:string}) => (
+                <div class="text-center p-4 rounded-xl" style="background: rgba(0,0,0,0.2);">
+                  <div class="text-2xl font-black text-orange-400 mb-1">{item.metric}</div>
+                  <div class="text-slate-500 text-xs uppercase tracking-wide font-medium">{item.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VT ANNUAL CALENDAR -->
+  <section class="py-20 px-6" style="background: #04080f;">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3">Vermont Annual Calendar</p>
+        <h2 class="text-3xl md:text-4xl font-black text-white">The Grand List Grievance Timeline</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { month: 'Jan–Mar', event: 'Values Finalized', note: 'Town listers prepare updated Grand List entries. Contact us now — we review your current value before the List is filed.' },
+          { month: 'Apr 1', event: 'Grand List Filed', note: 'Most Vermont towns file the Grand List by April 1 under 32 V.S.A. § 4152. You receive your assessed value notice.' },
+          { month: '30 Days After', event: 'Grievance Deadline', note: 'Under § 4404, you have 30 days to file a written grievance. Varies by town. Don\'t miss your local deadline.' },
+          { month: 'May–Aug', event: 'Hearings & Result', note: 'Lister hearing, then BCA if needed. BCA conducts a site inspection. Results issued. Director appeal available if needed.' },
+        ].map((item: {month:string,event:string,note:string}) => (
+          <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:18px;">
+            <div class="text-orange-400 font-black text-sm mb-2 uppercase tracking-wide">{item.month}</div>
+            <div class="text-white font-semibold text-sm mb-1">{item.event}</div>
+            <div class="text-slate-500 text-xs leading-relaxed">{item.note}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VERMONT GOVERNMENT RESOURCES -->
+  <section class="py-20 px-6" style="background: #04080f;">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-orange-400 text-sm font-semibold uppercase tracking-widest mb-3">Official Vermont Resources</p>
+        <h2 class="text-3xl font-black text-white mb-2">Learn More from Government Sources</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a href="https://sos.vermont.gov/municipal-division/boards-of-civil-authority/" target="_blank" rel="noopener noreferrer" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 20px; transition: all 0.3s ease;" class="hover:border-orange-500/30 group">
+          <div class="text-white font-bold text-sm mb-2">Board of Civil Authority (BCA)</div>
+          <p class="text-slate-500 text-xs leading-relaxed">Vermont Secretary of State guide to BCA procedures, jurisdiction, and appeal processes under 32 V.S.A. § 4461.</p>
+          <div class="flex items-center gap-1 text-orange-400 text-xs font-semibold mt-3 group-hover:gap-2 transition-all">
+            Visit <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </div>
+        </a>
+
+        <a href="https://tax.vermont.gov/property/property-tax-adjustment" target="_blank" rel="noopener noreferrer" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 20px; transition: all 0.3s ease;" class="hover:border-orange-500/30 group">
+          <div class="text-white font-bold text-sm mb-2">Vermont Department of Taxes</div>
+          <p class="text-slate-500 text-xs leading-relaxed">Official Vermont property tax adjustment procedures and grievance filing deadlines.</p>
+          <div class="flex items-center gap-1 text-orange-400 text-xs font-semibold mt-3 group-hover:gap-2 transition-all">
+            Visit <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </div>
+        </a>
+
+        <a href="https://legislature.vermont.gov/statutes/section/32VSA/04404" target="_blank" rel="noopener noreferrer" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 20px; transition: all 0.3s ease;" class="hover:border-orange-500/30 group">
+          <div class="text-white font-bold text-sm mb-2">Vermont Statute 32 V.S.A. § 4404</div>
+          <p class="text-slate-500 text-xs leading-relaxed">Full statutory text governing the 30-day grievance filing deadline and procedures.</p>
+          <div class="flex items-center gap-1 text-orange-400 text-xs font-semibold mt-3 group-hover:gap-2 transition-all">
+            View Law <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-6" style="background: #060a0f;">
+    <div class="max-w-3xl mx-auto text-center">
+      <div style="background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(234,88,12,0.04) 100%); border: 1px solid rgba(249,115,22,0.18); border-radius: 20px;" class="p-12">
+        <h2 class="text-3xl font-black text-white mb-4">Ready to Grieve Your Vermont Assessment?</h2>
+        <p class="text-slate-400 text-lg mb-8">Send us your property and we'll tell you straight — is there a case worth filing, and what does the savings look like?</p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-10 py-4 text-base btn-orange font-semibold">
+          Get Free Grievance Review
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
