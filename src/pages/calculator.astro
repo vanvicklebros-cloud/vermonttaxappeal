@@ -1,0 +1,392 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteData from '../data/site.json';
+---
+
+<BaseLayout
+  title="Vermont Property Tax Savings Calculator | Estimate Your Grievance Savings"
+  description="Calculate your potential Vermont property tax savings with our free Grand List calculator. Estimate annual savings by county and property type. All 14 VT counties supported."
+>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-[80vh] flex items-center overflow-hidden" style="background: #060a0f;">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute bottom-0 left-0 w-[600px] h-[400px] opacity-10"
+           style="background: radial-gradient(ellipse, #f97316 0%, transparent 70%);"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 py-24 w-full">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400 text-xs font-semibold mb-10 tracking-wide">
+          Free Calculator · All 14 VT Counties · All Property Types
+        </div>
+
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.06] mb-8" style="letter-spacing: -0.02em;">
+          See what your<br />
+          Vermont <span style="background: linear-gradient(90deg, #f97316, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Grand List savings</span><br />
+          could look like.
+        </h1>
+
+        <p class="text-slate-300 text-lg md:text-xl leading-relaxed mb-6 max-w-2xl">
+          Enter your current assessed value (Grand List), estimated fair market value, property type, and county. We calculate your potential first-year tax savings and what you'll actually keep after our 30% contingency fee.
+        </p>
+        <p class="text-slate-400 text-base leading-relaxed mb-2 max-w-2xl">
+          This is an estimate based on Vermont's average effective property tax rates. Your actual results depend on the specifics of your property and our analysis.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR SECTION -->
+  <section class="py-28 px-6" style="background: #04080f;">
+    <div class="max-w-5xl mx-auto">
+      <!-- Input Card -->
+      <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 40px;" class="mb-10">
+        <h2 class="text-2xl font-black text-white mb-8">Calculator</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <!-- Current Grand List Value -->
+          <div>
+            <label for="grandListValue" class="block text-sm font-semibold text-slate-300 mb-2">
+              Current Grand List Value
+            </label>
+            <div class="relative">
+              <span class="absolute left-3 top-3 text-slate-500">$</span>
+              <input
+                type="text"
+                id="grandListValue"
+                placeholder="500000"
+                class="w-full pl-6 pr-4 py-3 rounded-lg text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);"
+                inputmode="numeric"
+              />
+            </div>
+            <p class="text-slate-500 text-xs mt-1">What the town listers have assessed your property at on the current Grand List.</p>
+          </div>
+
+          <!-- Estimated Fair Market Value -->
+          <div>
+            <label for="fairMarketValue" class="block text-sm font-semibold text-slate-300 mb-2">
+              Estimated Fair Market Value
+            </label>
+            <div class="relative">
+              <span class="absolute left-3 top-3 text-slate-500">$</span>
+              <input
+                type="text"
+                id="fairMarketValue"
+                placeholder="450000"
+                class="w-full pl-6 pr-4 py-3 rounded-lg text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);"
+                inputmode="numeric"
+              />
+            </div>
+            <p class="text-slate-500 text-xs mt-1">What you believe your property is actually worth based on comparable sales or appraisal.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <!-- Property Type -->
+          <div>
+            <label for="propertyType" class="block text-sm font-semibold text-slate-300 mb-2">
+              Property Type
+            </label>
+            <select
+              id="propertyType"
+              class="w-full px-4 py-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+              style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);"
+            >
+              <option value="homestead" style="color: #000;">Residential (Homestead)</option>
+              <option value="nonhomestead" style="color: #000;">Residential (Non-homestead/Vacation)</option>
+              <option value="commercial" style="color: #000;">Commercial</option>
+              <option value="industrial" style="color: #000;">Industrial</option>
+              <option value="agricultural" style="color: #000;">Agricultural/Farm</option>
+              <option value="mixed" style="color: #000;">Mixed-Use</option>
+            </select>
+            <p class="text-slate-500 text-xs mt-1">Vermont applies different effective rates based on property class.</p>
+          </div>
+
+          <!-- County -->
+          <div>
+            <label for="county" class="block text-sm font-semibold text-slate-300 mb-2">
+              Vermont County
+            </label>
+            <select
+              id="county"
+              class="w-full px-4 py-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+              style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);"
+            >
+              <option value="" style="color: #000;">Select a county...</option>
+              <option value="Chittenden" style="color: #000;">Chittenden County</option>
+              <option value="Washington" style="color: #000;">Washington County</option>
+              <option value="Rutland" style="color: #000;">Rutland County</option>
+              <option value="Windham" style="color: #000;">Windham County</option>
+              <option value="Windsor" style="color: #000;">Windsor County</option>
+              <option value="Bennington" style="color: #000;">Bennington County</option>
+              <option value="Franklin" style="color: #000;">Franklin County</option>
+              <option value="Addison" style="color: #000;">Addison County</option>
+              <option value="Lamoille" style="color: #000;">Lamoille County</option>
+              <option value="Caledonia" style="color: #000;">Caledonia County</option>
+              <option value="Orange" style="color: #000;">Orange County</option>
+              <option value="Orleans" style="color: #000;">Orleans County</option>
+              <option value="Grand Isle" style="color: #000;">Grand Isle County</option>
+              <option value="Essex" style="color: #000;">Essex County</option>
+            </select>
+            <p class="text-slate-500 text-xs mt-1">We handle grievances in all 14 Vermont counties.</p>
+          </div>
+        </div>
+
+        <button
+          id="calculateBtn"
+          class="w-full py-4 text-base btn-orange font-semibold"
+          onclick="calculateSavings()"
+        >
+          Calculate My Savings
+        </button>
+      </div>
+
+      <!-- Results Card (initially hidden) -->
+      <div id="resultsCard" style="display: none; background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(234,88,12,0.04) 100%); border: 1px solid rgba(249,115,22,0.18); border-radius: 20px; padding: 40px;">
+
+        <h3 class="text-2xl font-black text-white mb-8">Your Estimated Savings</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <!-- Annual Tax Savings -->
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(249,115,22,0.2); border-radius: 14px; padding: 24px;">
+            <p class="text-slate-400 text-sm mb-2">Estimated Annual Tax Savings</p>
+            <div id="annualSavings" class="text-4xl font-black text-orange-400 mb-3">$0</div>
+            <p class="text-slate-500 text-xs">Based on reducing your Grand List value from current assessed to fair market value, calculated at Vermont's average effective rate for your property type.</p>
+          </div>
+
+          <!-- Your Net Savings (70% after fee) -->
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(249,115,22,0.2); border-radius: 14px; padding: 24px;">
+            <p class="text-slate-400 text-sm mb-2">Your Net First-Year Savings (After Our Fee)</p>
+            <div id="netFirstYear" class="text-4xl font-black text-emerald-400 mb-3">$0</div>
+            <p class="text-slate-500 text-xs">You keep 70% of the first-year savings. We take 30% as our contingency fee. In subsequent years, you keep 100% of the recurring savings.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <!-- 5-Year Projected Savings -->
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(249,115,22,0.2); border-radius: 14px; padding: 24px;">
+            <p class="text-slate-400 text-sm mb-2">5-Year Projected Savings</p>
+            <div id="fiveYearSavings" class="text-3xl font-black text-blue-400">$0</div>
+            <p class="text-slate-500 text-xs mt-3">First year (70% of savings) + 4 years at full recurring rate (100% of savings). Assumes assessment stays reduced.</p>
+          </div>
+
+          <!-- 10-Year Projected Savings -->
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(249,115,22,0.2); border-radius: 14px; padding: 24px;">
+            <p class="text-slate-400 text-sm mb-2">10-Year Projected Savings</p>
+            <div id="tenYearSavings" class="text-3xl font-black text-blue-400">$0</div>
+            <p class="text-slate-500 text-xs mt-3">First year (70%) + 9 years at full recurring rate. Long-term impact of a successful grievance.</p>
+          </div>
+        </div>
+
+        <!-- Fee Breakdown -->
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 20px; margin-bottom: 8px;">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-slate-400">First-Year Tax Savings Breakdown</span>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400 text-sm">Gross Savings (First Year)</span>
+              <span id="grossFirstYear" class="text-white font-bold">$0</span>
+            </div>
+            <div class="flex justify-between items-center border-t border-white/[0.06] pt-3">
+              <span class="text-orange-400 text-sm font-semibold">Our 30% Contingency Fee</span>
+              <span id="ourFee" class="text-orange-400 font-bold">$0</span>
+            </div>
+            <div class="flex justify-between items-center border-t border-white/[0.06] pt-3">
+              <span class="text-emerald-400 text-sm font-semibold">You Keep (70%)</span>
+              <span id="youKeep" class="text-emerald-400 font-bold text-lg">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.2); border-radius: 12px; padding: 16px;">
+          <p class="text-slate-400 text-xs leading-relaxed">
+            <strong class="text-slate-300">Important:</strong> This calculator estimates savings based on reducing your Grand List value to fair market value. Actual results depend on the evidence supporting your grievance, the specifics of your property, and Vermont's assessment standards. These are estimates — not guarantees. Results vary by municipality, county, and year of reappraisal. Contact us for a detailed case analysis.
+          </p>
+        </div>
+      </div>
+
+      <!-- Error Message (initially hidden) -->
+      <div id="errorCard" style="display: none; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 14px; padding: 20px;">
+        <p class="text-red-400 text-sm" id="errorMessage"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="py-20 px-6" style="background: #060a0f;">
+    <div class="max-w-4xl mx-auto">
+      <div class="rounded-3xl overflow-hidden p-12 text-center" style="background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(234,88,12,0.04) 100%); border: 1px solid rgba(249,115,22,0.18);">
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-4">
+          Ready to Challenge Your Assessment?
+        </h2>
+        <p class="text-slate-400 text-lg mb-8 max-w-2xl mx-auto">
+          This calculator gives you a rough estimate. Let's do a real analysis. Send us your property address, Grand List value, and county — we'll pull your assessment data and give you a detailed case evaluation.
+        </p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-10 py-5 text-base btn-orange font-semibold">
+          Get Your Free Grievance Review
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="py-28 px-6" style="background: #04080f;">
+    <div class="max-w-3xl mx-auto">
+      <div class="mb-12">
+        <p class="text-orange-400 text-sm font-semibold uppercase tracking-widest mb-3">Calculator Questions</p>
+        <h2 class="text-3xl font-black text-white">How the Calculator Works</h2>
+      </div>
+      <div class="space-y-2">
+        {[
+          {
+            q: "What is the Grand List value?",
+            a: "The Grand List is Vermont's official record of assessed property values, filed annually by town listers. It's what the town currently says your property is worth for tax purposes — and it's what you can grieve under 32 V.S.A. § 4404. Find your Grand List value on your property tax bill or by calling your town assessor or lister."
+          },
+          {
+            q: "How do I find my property's fair market value?",
+            a: "Fair market value is what a willing buyer would pay a willing seller for your property in an open market. You can estimate it using recent comparable sales (similar properties in your area that sold in the last 1-2 years), a professional appraisal, or income analysis if you own a rental property. We help you gather and document this evidence during the grievance process."
+          },
+          {
+            q: "Why do Vermont property tax rates vary by property type?",
+            a: "Vermont law creates different effective tax rates for different property classes. Homestead property (primary residences) typically has an effective rate around 1.8%. Non-homestead residential (rental property, vacation homes) runs about 2.2%. Commercial and industrial properties vary by county but generally fall in the 1.8%–2.4% range. These rates shift year to year as towns adjust the tax rate to raise their revenue."
+          },
+          {
+            q: "What if my assessed value is already below fair market value?",
+            a: "Then you likely don't have a grievance case. The calculator will show negative 'savings.' Vermont law requires assessments at fair market value — not below it. If your assessment is already lower than fair market value, you're getting a favorable assessment, and there's nothing to challenge."
+          },
+          {
+            q: "Is this calculator accurate for my specific property?",
+            a: "This calculator uses Vermont averages and estimates. Your actual tax savings depend on real data: your exact assessed value, your county's tax rate that year, your property type, and whether we can actually prove fair market value through evidence. The calculator gives you a ballpark — real analysis requires pulling your Grand List data and building a case. Contact us for a detailed review."
+          },
+          {
+            q: "What does the 30% contingency fee actually cover?",
+            a: "Our 30% fee applies to the first-year tax savings we achieve. If we reduce your annual tax bill by $4,000, we keep $1,200 and you keep $2,800. In every year after that, you keep 100% of the recurring savings. The fee covers all our work: evidence gathering, lister hearing, BCA hearing if needed, and any appeals up to the Director of Property Valuation and Review. If we don't reduce your assessed value, you owe us nothing."
+          },
+          {
+            q: "Can my assessment go back up after we win a grievance?",
+            a: "It can. If your town conducts a reappraisal cycle or reassesses your property for other reasons, the new assessed value might be higher than what we won. You then have the right to grieve again under 32 V.S.A. § 4404. Many of our clients grieve every year — it's a renewable right. We track your assessment each cycle and let you know if a new grievance makes sense."
+          },
+          {
+            q: "What about appeals beyond the Board of Civil Authority?",
+            a: "If the BCA doesn't move the value far enough, we can appeal to the Director of Property Valuation and Review (state level) and, if necessary, to Superior Court. These take longer and cost more to pursue, but we take them when the numbers justify it. The Director's decisions create precedent that can influence future assessments across Vermont."
+          },
+        ].map((item, i) => (
+          <details style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); border-radius:12px;" class="group" id={`faq-calc-${i}`}>
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+              <span class="text-white font-semibold text-sm pr-4">{item.q}</span>
+              <svg class="w-4 h-4 text-slate-500 shrink-0 transition-transform group-open:rotate-45" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3v10M3 8h10"/>
+              </svg>
+            </summary>
+            <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t pt-4" style="border-color:rgba(255,255,255,0.06);">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script is:inline>
+  function formatCurrency(value) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value);
+  }
+
+  function parseInputValue(input) {
+    const val = input.value.replace(/[^0-9.]/g, '');
+    return parseFloat(val) || 0;
+  }
+
+  function getEffectiveRate(propertyType) {
+    const rates = {
+      homestead: 0.018,       // ~1.8%
+      nonhomestead: 0.022,    // ~2.2%
+      commercial: 0.020,      // ~2.0%
+      industrial: 0.020,      // ~2.0%
+      agricultural: 0.015,    // ~1.5%
+      mixed: 0.019,           // ~1.9%
+    };
+    return rates[propertyType] || 0.020;
+  }
+
+  function calculateSavings() {
+    const grandListInput = document.getElementById('grandListValue');
+    const fairMarketInput = document.getElementById('fairMarketValue');
+    const propertyTypeSelect = document.getElementById('propertyType');
+    const countySelect = document.getElementById('county');
+
+    const grandListValue = parseInputValue(grandListInput);
+    const fairMarketValue = parseInputValue(fairMarketInput);
+    const propertyType = propertyTypeSelect.value;
+    const county = countySelect.value;
+
+    const errorCard = document.getElementById('errorCard');
+    const resultsCard = document.getElementById('resultsCard');
+
+    // Validation
+    if (!grandListValue || !fairMarketValue || !county) {
+      errorCard.style.display = 'block';
+      resultsCard.style.display = 'none';
+      document.getElementById('errorMessage').textContent = 'Please fill in all fields (Grand List value, Fair Market Value, and County).';
+      window.scrollTo({ top: errorCard.offsetTop - 100, behavior: 'smooth' });
+      return;
+    }
+
+    if (grandListValue <= fairMarketValue) {
+      errorCard.style.display = 'block';
+      resultsCard.style.display = 'none';
+      document.getElementById('errorMessage').textContent = 'Your Grand List value should be higher than your estimated fair market value to have potential savings. If it\'s already below fair market value, you may have a favorable assessment.';
+      window.scrollTo({ top: errorCard.offsetTop - 100, behavior: 'smooth' });
+      return;
+    }
+
+    errorCard.style.display = 'none';
+
+    // Calculate
+    const reduction = grandListValue - fairMarketValue;
+    const effectiveRate = getEffectiveRate(propertyType);
+    const annualSavings = reduction * effectiveRate;
+
+    // First year: we take 30%, you get 70%
+    const ourFee = annualSavings * 0.30;
+    const netFirstYear = annualSavings * 0.70;
+
+    // 5-year and 10-year projections
+    // Year 1: 70% (after fee)
+    // Years 2-5: 100% (full recurring savings)
+    const fiveYearSavings = netFirstYear + (annualSavings * 4);
+    const tenYearSavings = netFirstYear + (annualSavings * 9);
+
+    // Update display
+    document.getElementById('annualSavings').textContent = formatCurrency(annualSavings);
+    document.getElementById('netFirstYear').textContent = formatCurrency(netFirstYear);
+    document.getElementById('fiveYearSavings').textContent = formatCurrency(fiveYearSavings);
+    document.getElementById('tenYearSavings').textContent = formatCurrency(tenYearSavings);
+    document.getElementById('grossFirstYear').textContent = formatCurrency(annualSavings);
+    document.getElementById('ourFee').textContent = formatCurrency(ourFee);
+    document.getElementById('youKeep').textContent = formatCurrency(netFirstYear);
+
+    // Show results card
+    resultsCard.style.display = 'block';
+    window.scrollTo({ top: resultsCard.offsetTop - 100, behavior: 'smooth' });
+  }
+
+  // Allow Enter key to calculate
+  document.getElementById('fairMarketValue')?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') calculateSavings();
+  });
+</script>
+
+</BaseLayout>

@@ -4,8 +4,8 @@ import siteData from '../data/site.json';
 ---
 
 <BaseLayout
-  title="Free Assessment | VermontTaxAppeal.com"
-  description="Free Vermont property tax assessment for residential and commercial properties. 48-hour response with honest case evaluation and savings estimate."
+  title="Free Grievance Review | VermontTaxAppeal.com"
+  description="Request a free Vermont Grand List grievance review. We pull your assessment, compare it to arm's-length sales and income data, and tell you whether filing under 32 V.S.A. § 4404 makes sense for your property."
 >
 
   <!-- HERO -->
@@ -17,13 +17,13 @@ import siteData from '../data/site.json';
     <div class="relative max-w-3xl mx-auto text-center">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400 text-xs font-semibold mb-8 tracking-wide uppercase">
         <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
-        Response within 48 hours
+        Grand List review — no obligation
       </div>
       <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
-        Request Your <span class="gradient-text text-glow">Free Assessment</span>
+        Request Your <span class="gradient-text text-glow">Free Grievance Review</span>
       </h1>
       <p class="text-slate-400 text-lg leading-relaxed">
-        Fill out the form below. We pull your assessment data, run the numbers, and tell you exactly what we think you can save — no strings attached.
+        Share your Vermont property details below. We pull your Grand List entry, compare it against arm's-length sales and income data in your town, and give you an honest read on whether a § 4404 grievance is worth filing.
       </p>
     </div>
   </section>
@@ -38,13 +38,13 @@ import siteData from '../data/site.json';
       <!-- FORM -->
       <div class="lg:col-span-2">
         <form
-          name="property-assessment"
+          name="vt-grievance-review"
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
           class="glass rounded-2xl p-8 space-y-5"
         >
-          <input type="hidden" name="form-name" value="property-assessment" />
+          <input type="hidden" name="form-name" value="vt-grievance-review" />
           <p class="hidden">
             <label>Don't fill this out: <input name="bot-field" /></label>
           </p>
@@ -102,13 +102,13 @@ import siteData from '../data/site.json';
                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'"
               >
                 <option value="" disabled selected class="bg-slate-900">Select type...</option>
-                <option value="office" class="bg-slate-900">Office</option>
-                <option value="retail" class="bg-slate-900">Retail / Strip Center</option>
+                <option value="single-family" class="bg-slate-900">Single Family Home</option>
+                <option value="multifamily" class="bg-slate-900">Multi-Family (duplex, apartment)</option>
+                <option value="commercial" class="bg-slate-900">Commercial (office, retail, mixed-use)</option>
                 <option value="industrial" class="bg-slate-900">Industrial / Warehouse</option>
-                <option value="multifamily" class="bg-slate-900">Multifamily (5+ units)</option>
-                <option value="hospitality" class="bg-slate-900">Hotel / Hospitality</option>
-                <option value="mixed-use" class="bg-slate-900">Mixed Use</option>
-                <option value="special" class="bg-slate-900">Special Use / Other</option>
+                <option value="ski-resort" class="bg-slate-900">Ski / Resort / Lodging</option>
+                <option value="agricultural" class="bg-slate-900">Agricultural / Current Use</option>
+                <option value="vacation" class="bg-slate-900">Vacation / Seasonal Home</option>
               </select>
             </div>
           </div>
@@ -168,14 +168,14 @@ import siteData from '../data/site.json';
           </div>
 
           <button type="submit" class="w-full px-8 py-4 text-base btn-orange inline-flex items-center justify-center gap-2">
-            Submit — Get My Free Assessment
+            Submit — Get My Free Grievance Review
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M3 8h10M9 4l4 4-4 4"/>
             </svg>
           </button>
 
           <p class="text-slate-600 text-xs text-center">
-            No spam. No sales calls. We'll respond within 48 hours with an honest assessment.
+            No spam. We review your Grand List entry and respond with a plain assessment of whether a grievance makes sense.
           </p>
         </form>
       </div>
@@ -184,12 +184,12 @@ import siteData from '../data/site.json';
       <div class="space-y-5">
 
         <div class="glass rounded-2xl p-6">
-          <h2 class="text-orange-400 text-xs font-semibold uppercase tracking-widest mb-4">What Happens Next</h2>
+          <h2 class="text-orange-400 text-xs font-semibold uppercase tracking-widest mb-4">After You Submit</h2>
           <div class="space-y-4">
             {[
-              { step: '1', title: 'We research your property', body: 'Pull assessment data, run income analysis and comparable sales.' },
-              { step: '2', title: 'You get our honest take', body: 'Within 48 hours — case strength, savings estimate, recommendation.' },
-              { step: '3', title: 'You decide', body: 'If you want to move forward, we send two simple forms to sign.' },
+              { step: '1', title: 'Grand List lookup', body: 'We pull your current assessed value, your town\'s CLA ratio, and recent arm\'s-length sales in your municipality.' },
+              { step: '2', title: 'Grievance viability report', body: 'You get a plain-language read: is the assessment defensible, or is there a real gap between Grand List value and market value?' },
+              { step: '3', title: 'Your call', body: 'If the numbers support a grievance under § 4404, we send an authorization form and contingency agreement. Nothing else required from you.' },
             ].map(item => (
               <div class="flex gap-3 items-start">
                 <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
@@ -229,9 +229,9 @@ import siteData from '../data/site.json';
         </div>
 
         <div class="glass rounded-xl p-5">
-          <h2 class="text-white font-semibold text-sm mb-3">We Work With</h2>
+          <h2 class="text-white font-semibold text-sm mb-3">Vermont Property Types</h2>
           <div class="space-y-1">
-            {['Single Family Homes', 'Multifamily (5+ units)', 'Office Buildings', 'Retail & Strip Centers', 'Industrial & Warehouse', 'Hotels & Hospitality'].map(t => (
+            {['Year-Round & Seasonal Homes', 'Rental / Multi-Family', 'Commercial (Office, Retail)', 'Ski & Resort Lodging', 'Agricultural / Current Use', 'Industrial & Manufacturing'].map(t => (
               <div class="flex items-center gap-2 text-slate-400 text-xs">
                 <span class="w-1 h-1 rounded-full bg-orange-400 shrink-0"></span>
                 {t}
@@ -245,11 +245,11 @@ import siteData from '../data/site.json';
   </section>
 
   <script is:inline>
-    document.querySelector('form[name="property-assessment"]')?.addEventListener('submit', function() {
+    document.querySelector('form[name="vt-grievance-review"]')?.addEventListener('submit', function() {
       if (typeof gtag === 'function') {
         gtag('event', 'generate_lead', {
-          event_category: 'form',
-          event_label: 'property_assessment',
+          event_category: 'vt_grievance_form',
+          event_label: 'grand_list_grievance_review',
           value: 1
         });
       }
